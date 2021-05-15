@@ -91,7 +91,7 @@ class CartController extends AbstractController
     {
         // Le contenu du panier sur lequel on va boucler pour récupérer les id d'oiseaux
         $cart = $session->get('cart', []);
-        dump($cart);
+       
 
         // Il nous faut la liste des oiseaux pour les afficher à partir de leur id
         $birds = $birdModel->getBirds();
