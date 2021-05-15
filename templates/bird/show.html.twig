@@ -1,0 +1,53 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ bird.name }}{% endblock %}
+
+{% block menuBirds %}active{% endblock %}
+
+{% block body %}
+
+
+    <main class="container main-content">
+    
+        <div class="jumbotron mt-3 bird-detail">
+            <h1 class="display-4">{{ bird.name }}</h1>
+
+            <div class="row">
+                <div class="col-3">
+                    <img class="bird-card__image" src="{{ asset('images/' ~ bird.image) }}" width="50%">
+                </div>
+                <div class="col-9">
+                    <p class="lead">{{ bird.description }}</p>
+
+                    {# Bouton d'ajout au panier #}
+                    <hr class="my-4">
+                    <form action="{{ path('add_cart') }}" method="POST">
+                        <input type="hidden" name="id" value="{{ id }}">
+                        <button type="submit" class="btn btn-primary">Add to cart</button>
+                    </form>
+
+                </div>
+
+            </div>
+            
+
+
+            {# <form action="{{ path('add_cart', {id:id}) }}" method="post">
+                    
+                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                    
+            </form> #}
+
+
+            <hr class="my-4">
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="{{ path('home') }}" role="button">Back to list</a>
+            </p>
+        </div>
+
+    </main>
+
+
+
+
+{% endblock %}

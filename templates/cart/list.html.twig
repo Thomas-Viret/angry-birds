@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Your cart{% endblock %}
+
+{% block menuCart %}active{% endblock %}
+
+{% block body %}
+
+<main class="container cart-content">
+    <div class="row">
+        <div class="col">
+        
+            <h1 class="display-4">Your cart</h1>
+
+
+            {{ include('_flash_messages.html.twig') }}
+
+           
+
+            {% if cart is empty %}
+                <p>Your cart is empty</p>
+            {% else %}
+                <table class="table table-hover">
+
+                    <thead>
+                        <tr class="table-dark">
+                            <th scope="col">Nom</th>
+                            <th scope="col">Prix unitaire</th>
+                            <th scope="col">Quantité</th>
+                            <th scope="col">Prix total</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                    {# @see https://twig.symfony.com/doc/3.x/tags/for.html#iterating-over-keys-and-values #}
+                        {% for id, quantity in cart %}
+                        <tr>
+                            <th>{{ birds[id].name }}</th>
+                            <td>{{ birds[id].price }}&euro;</td>
+                            <td>{{ quantity}}</td>
+                            <td>{{ birds[id].price * quantity }}&euro;</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+            {% endif %}
+
+             <hr>
+
+            <form action="{{ path('cart_remove') }}" method="post" onsubmit="return confirm('Really clear cart ?')">
+                <button type="submit" class="btn btn-warning">Clear cart</button>
+            </form>
+
+        </div>
+    </div>
+</main>
+
+{% endblock %}
